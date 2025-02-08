@@ -3,96 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pulse 25 - AEEE Club</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="script.js" defer></script>
+    <title>Pulse 25 - SVCE</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="logo-container">
-            <a href="#" class="logo">
-                <img src="img/pulselogo.png" alt="Pulse 25">
-            </a>
-        </div>
-        <div class="nav-container">
-            <ul class="nav-links">
+    <header>
+        <nav>
+            <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#events">Events</a></li>
+                <li><a href="#schedule">Schedule</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-        </div>
-    </nav>
+        </nav>
+    </header>
     
-
-    <!-- Home Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h2>Welcome to Pulse 25</h2>
-            <p>The official symposium of AEEE Club</p>
-            <a href="#events" class="btn">Explore Events</a>
-        </div>
+    <section id="home" class="hero fade-in">
+        <h1 class="slide-up">Pulse 25 - SVCE</h1>
+        <p class="fade-in">The Ultimate Technical Symposium</p>
+        <a href="#events" class="cta pulse">Explore Events</a>
     </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2>About Pulse 25</h2>
-            <p>Pulse 25 is the annual symposium of the AEEE Club, featuring technical events, workshops, and more.</p>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section id="events">
-        <div class="container">
-            <h2>Events</h2>
-            <div class="event-grid">
-                <div class="event">
-                    <h3>Robo Race</h3>
-                    <p>Build and race your robot on a challenging track.</p>
-                    <a href="https://example.com/register" class="btn">Register</a>
-                    <a href="rulebook.pdf" class="btn">Rulebook</a>
-                </div>
-
-                <div class="event">
-                    <h3>Paper Presentation</h3>
-                    <p>Showcase your research and innovative ideas.</p>
-                    <a href="https://example.com/register" class="btn">Register</a>
-                    <a href="rulebook.pdf" class="btn">Rulebook</a>
-                </div>
-
-                <div class="event">
-                    <h3>Circuit Design</h3>
-                    <p>Design and troubleshoot electronic circuits.</p>
-                    <a href="https://example.com/register" class="btn">Register</a>
-                    <a href="rulebook.pdf" class="btn">Rulebook</a>
-                </div>
-
-                <div class="event">
-                    <h3>Tech Quiz</h3>
-                    <p>Test your technical knowledge in an exciting quiz.</p>
-                    <a href="https://example.com/register" class="btn">Register</a>
-                    <a href="rulebook.pdf" class="btn">Rulebook</a>
-                </div>
+    
+    <section id="events" class="fade-in">
+        <h2 class="slide-up">Our Events</h2>
+        <div class="event-grid">
+            <div class="event hover-zoom">
+                <h3>Event 1: Coding Challenge</h3>
+                <p>Test your coding skills against the best minds.</p>
+                <a href="https://forms.gle/example1" target="_blank" class="register-btn bounce">Register</a>
+                <a href="rulebooks/coding-challenge.pdf" target="_blank" class="rulebook-btn">View Rulebook</a>
+            </div>
+            <div class="event hover-zoom">
+                <h3>Event 2: Robotics Race</h3>
+                <p>Build and race your robot through an obstacle course.</p>
+                <a href="https://forms.gle/example2" target="_blank" class="register-btn bounce">Register</a>
+                <a href="rulebooks/robotics-race.pdf" target="_blank" class="rulebook-btn">View Rulebook</a>
+            </div>
+            <div class="event hover-zoom">
+                <h3>Event 3: Tech Quiz</h3>
+                <p>Compete in a high-stakes technical quiz.</p>
+                <a href="https://forms.gle/example3" target="_blank" class="register-btn bounce">Register</a>
+                <a href="rulebooks/tech-quiz.pdf" target="_blank" class="rulebook-btn">View Rulebook</a>
+            </div>
+            <div class="event hover-zoom">
+                <h3>Event 4: Paper Presentation</h3>
+                <p>Showcase your research and innovation.</p>
+                <a href="https://forms.gle/example4" target="_blank" class="register-btn bounce">Register</a>
+                <a href="rulebooks/paper-presentation.pdf" target="_blank" class="rulebook-btn">View Rulebook</a>
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p>Email: aeeeclub@example.com</p>
-            <p>Follow us on social media:</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
+    
+    
+    <section id="schedule" class="fade-in">
+        <h2 class="slide-up">Schedule</h2>
+        <p class="fade-in">Stay tuned for the full schedule of Pulse 25.</p>
     </section>
-
+    
+    <footer id="contact" class="fade-in">
+        <p>Contact us: pulse25@svce.ac.in</p>
+    </footer>
 </body>
 </html>
+
