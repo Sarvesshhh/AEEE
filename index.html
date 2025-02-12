@@ -3,67 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pulse 25 - SVCE</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <title>PULSE '25 - EEE Symposium</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js" defer></script>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
+    <!-- HEADER -->
     <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#schedule">Schedule</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="logo">
+            <img src="pulse-logo.png" alt="Pulse 25 Logo">
+        </div>
+        <h1>PULSE '25 - EEE Symposium</h1>
     </header>
-    
-    <section id="home" class="hero fade-in">
-        <h1 class="slide-up">Pulse 25 - SVCE</h1>
-        <p class="fade-in">The Ultimate Technical Symposium</p>
-        <a href="#events" class="cta pulse">Explore Events</a>
-    </section>
-    
-    <section id="events" class="fade-in">
-        <h2 class="slide-up">Our Events</h2>
-        <div class="event-grid">
-            <div class="event hover-zoom">
-                <h3>Event 1: Coding Challenge</h3>
-                <p>Test your coding skills against the best minds.</p>
-                <a href="https://forms.gle/example1" target="_blank" class="register-btn bounce">Register</a>
-                <a href="rulebooks/coding-challenge.pdf" target="_blank" class="rulebook-btn">View Rulebook</a>
-            </div>
-            <div class="event hover-zoom">
-                <h3>Event 2: Robotics Race</h3>
-                <p>Build and race your robot through an obstacle course.</p>
-                <a href="https://forms.gle/example2" target="_blank" class="register-btn bounce">Register</a>
-                <a href="rulebooks/robotics-race.pdf" target="_blank" class="rulebook-btn">View Rulebook</a>
-            </div>
-            <div class="event hover-zoom">
-                <h3>Event 3: Tech Quiz</h3>
-                <p>Compete in a high-stakes technical quiz.</p>
-                <a href="https://forms.gle/example3" target="_blank" class="register-btn bounce">Register</a>
-                <a href="rulebooks/tech-quiz.pdf" target="_blank" class="rulebook-btn">View Rulebook</a>
-            </div>
-            <div class="event hover-zoom">
-                <h3>Event 4: Paper Presentation</h3>
-                <p>Showcase your research and innovation.</p>
-                <a href="https://forms.gle/example4" target="_blank" class="register-btn bounce">Register</a>
-                <a href="rulebooks/paper-presentation.pdf" target="_blank" class="rulebook-btn">View Rulebook</a>
-            </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Welcome to PULSE '25</h1>
+        <p>Annual EEE Symposium - Sri Venkateswara College of Engineering</p>
+        <div class="countdown">
+            <h2>Event Starts In:</h2>
+            <div id="timer"></div>
         </div>
     </section>
-    
-    
-    <section id="schedule" class="fade-in">
-        <h2 class="slide-up">Schedule</h2>
-        <p class="fade-in">Stay tuned for the full schedule of Pulse 25.</p>
+
+    <!-- EVENTS SECTION -->
+    <section class="events">
+        <h2>Events</h2>
+        <div class="events-container">
+            <div class="event-card" onclick="showEventDetails('event1')">Survival in Borderland</div>
+            <div class="event-card" onclick="showEventDetails('event2')">Ultimate Circuit</div>
+            <div class="event-card" onclick="showEventDetails('event3')">Clash of Circuitry</div>
+            <div class="event-card" onclick="showEventDetails('event4')">Electric Wordza</div>
+            <div class="event-card" onclick="showEventDetails('event5')">Paper Presentation</div>
+            <div class="event-card" onclick="showEventDetails('event6')">PowerShift</div>
+        </div>
     </section>
-    
-    <footer id="contact" class="fade-in">
-        <p>Contact us: pulse25@svce.ac.in</p>
-    </footer>
+
+    <!-- EVENT DETAILS POPUP -->
+    <div id="event-details" class="event-details">
+        <div class="event-content">
+            <h3 id="event-title"></h3>
+            <p id="event-description"></p>
+            <button onclick="closeEventDetails()">Close</button>
+        </div>
+    </div>
+
 </body>
 </html>
-
