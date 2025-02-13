@@ -1,127 +1,353 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-/* Root Variables */
-:root {
-    --primary-color: #ffffff; /* White for contrast */
-    --secondary-color: #FFD700; /* Yellow as secondary */
-    --dark-bg: #000000; /* Black */
-    --text-light: #ffffff;
-    --text-dark: #111;
-    --shadow: 0 0 20px rgba(255, 215, 0, 0.6); /* Yellow glow */
-}
-
-/* Reset and Global Styles */
-* {
+/* General Styles */
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background-color: #000000 !important;
-    color: var(--text-light);
+    background-color: black;
+    color: #FFA500;
     text-align: center;
+    overflow-x: hidden;
 }
 
-/* HEADER */
-header {
+/* Disable scrolling when popup is open */
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Background Video */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -2;
+}
+
+#bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Minimized Poster */
+.banner img {
+    width: 50%;
+    max-width: 400px;
+    margin-top: 10px;
+    z-index: 5;
+    position: relative;
+}
+
+/* Navbar - Match Layout & Size to Upagraha-25 */
+nav {
+    max-width: calc(100% - 17px);
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Space between logo & menu */
     align-items: center;
-    padding: 15px 40px;
-    background: #000000;
+    background: black; /* Keep your existing color */
+    padding: 1 rem; /* Adjust padding for a wider look */
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000;
-    box-shadow: var(--shadow);
+    left: 0;
+    z-index: 100;
+    box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.5);
 }
 
-.logo img {
-    width: 80px;
-    filter: brightness(1.5);
+/* Adjust Logo Size */
+.logo {
+    padding-left: 10px;
+    height: 70px; /* Increase logo size to match Upagraha-25 */
 }
 
-/* HERO SECTION */
-.hero {
-    height: 100vh;
+/* Center Navbar Links */
+.nav-container {
+    flex: 1;
     display: flex;
+    justify-content: center; /* Ensure links are centered */
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 25px; /* Increase spacing between links */
+}
+
+nav ul li a {
+    font-size: 20px; /* Increase font size */
+    font-weight: bold;
+    color: #FFA500;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    color: #FFD700;
+}
+/* Responsive Navigation */
+.menu-toggle {
+    display: none;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: url('background.jpg') no-repeat center center/cover;
-    padding-top: 80px;
+    cursor: pointer;
+}
+
+.menu-toggle div {
+    width: 30px;
+    height: 4px;
+    background-color: #FFA500;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    margin-top: 100px;
+    padding: 50px 20px;
+    z-index: 5;
+    position: relative;
 }
 
 .hero h1 {
-    font-size: 3rem;
-    text-shadow: var(--shadow);
-    color: var(--primary-color);
-}
-
-/* COUNTDOWN TIMER */
-#timer {
-    font-size: 2rem;
+    font-size: 55px;
     font-weight: bold;
-    color: var(--primary-color);
+    color: #FFD700;
+    text-shadow: 0px 0px 10px #FFA500;
+    margin-bottom: 10px;
 }
 
-/* EVENTS SECTION */
-.events-container {
+.hero h2 {
+    font-size: 30px;
+    font-weight: normal;
+    color: #FFA500;
+}
+
+/* Countdown Timer - New Styling */
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 0 0 10px #FFA500;
+}
+
+/* Countdown Timer Numbers */
+.countdown-container span {
+    font-size: 50px;
+    font-weight: bold;
+    color: #FFA500;
+    text-shadow: 0 0 15px #FFD700;
+    margin: 0 5px;
+}
+
+/* Countdown Timer Labels */
+.countdown-container p {
+    font-size: 18px;
+    font-weight: normal;
+    color: white;
+    margin: 0 10px;
+}
+
+/* Register Button */
+.register-btn {
+    background: linear-gradient(45deg, #FF8C00, #FFD700);
+    color: black;
+    padding: 18px 40px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 0 10px #FFD700;
+    margin-top: 30px;
+    display: inline-block;
+}
+
+.register-btn:hover {
+    background: linear-gradient(45deg, #FFA500, #FF4500);
+    transform: scale(1.1);
+}
+
+/* Events Section */
+.event-section {
+    margin: 60px 0;
+}
+
+.event-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    padding: 50px;
-    max-width: 1200px;
-    margin: auto;
+    justify-content: center;
+    margin: 40px auto;
+    max-width: 1000px;
 }
 
-/* EVENT CARDS */
 .event-card {
-    background: var(--dark-bg);
-    border: 2px solid var(--secondary-color);
+    background: rgba(255, 140, 0, 0.8);
+    color: white;
     padding: 20px;
     font-size: 18px;
-    color: var(--primary-color);
-    font-weight: bold;
     cursor: pointer;
-    border-radius: 10px;
+    font-weight: bold;
     transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #FFA500;
 }
 
 .event-card:hover {
-    transform: scale(1.1);
-    box-shadow: var(--shadow);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #FFA500;
 }
 
-/* EVENT DETAILS POPUP */
-.event-details {
+/* Popup */
+.popup {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    color: #FFA500;
+    padding: 25px;
+    border-radius: 15px;
+    border: 3px solid #FFA500;
+    box-shadow: 0 0 20px #FFA500;
     width: 50%;
-    background: #111;
-    padding: 20px;
-    border-radius: 10px;
     text-align: center;
-    box-shadow: var(--shadow);
-    color: var(--primary-color);
+    z-index: 200;
 }
 
-.event-details.active {
-    display: block;
-    animation: fadeIn 0.5s;
+/* Popup Overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 150;
+    display: none;
 }
 
-/* ANIMATIONS */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Rulebook Download Button */
+.rulebook-btn {
+    display: inline-block;
+    background: linear-gradient(45deg, #FF8C00, #FFD700);
+    color: black;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 0 10px #FFD700;
+    width: 200px; /* Adjust width */
+    text-align: center;
+    margin: 20px auto; /* Centers the button */
+}
+
+/* Center popup content */
+.popup-content {
+    text-align: center;
+}
+
+/* Close button */
+.close-btn {
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    background: black;
+    padding: 30px;
+    color: #FFA500;
+    font-size: 18px;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .popup {
+        width: 80%;
+    }
+
+    .popup-overlay {
+        backdrop-filter: blur(2px);
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+/* Mobile Responsive Navbar */
+@media screen and (max-width: 1024px) {
+    nav {
+        padding: 10px 30px; /* Reduce padding for tablets */
+    }
+
+    .logo {
+        height: 60px; /* Slightly smaller logo on tablets */
+    }
+
+    nav ul {
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        background: black;
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 15px 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+/* Mobile View */
+@media screen and (max-width: 768px) {
+    nav {
+        padding: 10px 20px;
+    }
+
+    .logo {
+        height: 50px;
+    }
+
+    nav ul {
+        top: 60px;
+    }
 }
 
 /* RESPONSIVE DESIGN */
