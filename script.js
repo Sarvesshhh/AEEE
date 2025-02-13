@@ -1,7 +1,7 @@
 // Countdown Timer
 const countdownDate = new Date("February 22, 2025 09:00:00").getTime();
 
-const countdownFunction = setInterval(function() {
+const countdownFunction = setInterval(function () {
     let now = new Date().getTime();
     let distance = countdownDate - now;
 
@@ -18,6 +18,7 @@ const countdownFunction = setInterval(function() {
     }
 }, 1000);
 
+// Event Details with Rulebooks
 const eventDetails = {
     "Survival in Borderland": {
         title: "Survival in Borderland: Escape the Breakout",
@@ -26,7 +27,7 @@ const eventDetails = {
             "Round 2: Escape Room with number and face card challenges.",
             "Visa System: Teams start with 10 minutes; time is gained or lost based on performance."
         ],
-        rulebook: "Posters\ESCAPE ROOM (1).pdf" // Rulebook path
+        rulebooks: ["rulebooks/ESCAPE ROOM (1) (1).pdf"]
     },
     "U(KNOW)": {
         title: "U(KNOW)",
@@ -35,7 +36,7 @@ const eventDetails = {
             "Connect the Dots: Identify electrical/electronic components from images.",
             "Circuit Challenge: Solve a circuit problem using resistors."
         ],
-        rulebook: "Posters\UKNOW (1).pdf"
+        rulebooks: ["rulebooks/UKNOW (1) (1).pdf"]
     },
     "Clash of Circuitry": {
         title: "Clash of Circuitry",
@@ -43,7 +44,7 @@ const eventDetails = {
             "Circuit Enigma: Debug an incomplete/faulty circuit.",
             "Assembly Arena: Teams assemble circuits using earned components and negotiate for missing parts."
         ],
-        rulebook: "Posters\coc.pdf"
+        rulebooks: ["rulebooks/coc.pdf"]
     },
     "Electric Wordza": {
         title: "Electric Wordza",
@@ -51,7 +52,7 @@ const eventDetails = {
             "Round 1: A bingo-style game with electrical terms.",
             "Round 2: Teams enact and guess terms with limited clues."
         ],
-        rulebook: "Posters\Electric wordza  (2).pdf"
+        rulebooks: ["rulebooks/Electric wordza  (2).pdf"]
     },
     "PowerShift (Paper Presentation)": {
         title: "PowerShift: Transforming Ideas into Reality (Paper Presentation)",
@@ -63,7 +64,10 @@ const eventDetails = {
             "Space Exploration & Aerospace Tech – Solar power stations, energy-efficient space systems.",
             "Smart Cities & IoT – AI-powered grids, IoT-based infrastructure for smart cities."
         ],
-        rulebook: "Posters\paper presentation.pdf"
+        rulebooks: [
+            "rulebooks/paper presentation (1).pdf",
+            "rulebooks/project presentation.pdf"
+        ] // Two PDFs for PowerShift
     }
 };
 
@@ -77,8 +81,6 @@ function openPopup(event) {
 
     if (eventDetails[event]) {
         title.innerHTML = eventDetails[event].title;
-
-        // Clear existing description
         description.innerHTML = "";
 
         // Create an unordered list for the description
@@ -91,12 +93,14 @@ function openPopup(event) {
 
         description.appendChild(ul);
 
-        // Set rulebook button link
-        if (eventDetails[event].rulebook) {
-            rulebookButton.href = eventDetails[event].rulebook;
-            rulebookButton.style.display = "inline-block"; // Make button visible
+        // Set up the rulebook download button
+        if (eventDetails[event].rulebooks) {
+            rulebookButton.style.display = "block"; // Show button
+            rulebookButton.onclick = function () {
+                downloadRulebooks(eventDetails[event].rulebooks);
+            };
         } else {
-            rulebookButton.style.display = "none"; // Hide button if no rulebook
+            rulebookButton.style.display = "none"; // Hide if no rulebook
         }
 
         // Show popup and overlay
@@ -106,6 +110,20 @@ function openPopup(event) {
         // Disable scrolling
         document.body.style.overflow = "hidden";
     }
+}
+
+// Function to Download Multiple Rulebooks
+function downloadRulebooks(rulebooks) {
+    rulebooks.forEach(pdf => {
+        setTimeout(() => {
+            const link = document.createElement("a");
+            link.href = pdf;
+            link.setAttribute("download", pdf.split("/").pop()); // Extracts filename
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }, 500); // Small delay to ensure downloads start properly
+    });
 }
 
 // Close Popup
@@ -119,7 +137,6 @@ function closePopup() {
     // Enable scrolling again
     document.body.style.overflow = "auto";
 }
-
 
 // Countdown Timer Logic
 const eventDate = new Date("February 22, 2025 00:00:00").getTime();
@@ -156,7 +173,7 @@ function toggleMenu() {
 // Ensure Background Video Reloads Properly
 document.addEventListener("DOMContentLoaded", function () {
     let video = document.getElementById("bg-video");
-    
+
     video.addEventListener("error", function () {
         console.log("Background video failed to load.");
     });
