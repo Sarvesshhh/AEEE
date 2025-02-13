@@ -5,52 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PULSE '25 - EEE Symposium</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js" defer></script>
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="script.js"></script>
 </head>
 <body>
 
-    <!-- HEADER -->
+    <!-- Background Video -->
+    <div class="video-container">
+        <video id="bg-video" autoplay muted loop playsinline>
+            <source src="bgvideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="bg-overlay"></div> <!-- Ensures text readability over the video -->
+    </div>
+
+    <!-- Navigation Bar -->
     <header>
-        <div class="logo">
-            <img src="pulse-logo.png" alt="Pulse 25 Logo">
-        </div>
-        <h1>PULSE '25 - EEE Symposium</h1>
+        <nav>
+            <img src="img/pulselogo.png" alt="Pulse 25 Logo" class="logo">
+            <div class="nav-container">
+                <ul id="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#register">Register Now</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <h1>Welcome to PULSE '25</h1>
-        <p>Annual EEE Symposium - Sri Venkateswara College of Engineering</p>
-        <div class="countdown">
-            <h2>Event Starts In:</h2>
-            <div id="timer"></div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to PULSE '25</h1>
+            <p>EEE Symposium</p>
+
+            <!-- Countdown Timer -->
+            <div id="countdown" class="countdown-container">
+                <div class="time-box"><span id="days">00</span><p>Days</p></div>
+                <div class="time-box"><span id="hours">00</span><p>Hours</p></div>
+                <div class="time-box"><span id="minutes">00</span><p>Minutes</p></div>
+                <div class="time-box"><span id="seconds">00</span><p>Seconds</p></div>
+            </div>
+
+            <!-- Banner Image -->
+            <div class="banner">
+                <img src="img/Main Banner.jpeg" alt="PULSE '25 Banner">
+            </div>
         </div>
     </section>
 
-    <!-- EVENTS SECTION -->
-    <section class="events">
+    <!-- About Section -->
+    <section id="about">
+        <h2>About PULSE '25</h2>
+        <p>PULSE is a National Level Technical Symposium organized by the Department of Electrical and Electronics Engineering, SVCE...</p>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events">
         <h2>Events</h2>
-        <div class="events-container">
-            <div class="event-card" onclick="showEventDetails('event1')">Survival in Borderland</div>
-            <div class="event-card" onclick="showEventDetails('event2')">Ultimate Circuit</div>
-            <div class="event-card" onclick="showEventDetails('event3')">Clash of Circuitry</div>
-            <div class="event-card" onclick="showEventDetails('event4')">Electric Wordza</div>
-            <div class="event-card" onclick="showEventDetails('event5')">Paper Presentation</div>
-            <div class="event-card" onclick="showEventDetails('event6')">PowerShift</div>
+        <div class="event-grid">
+            <div class="event-card" onclick="openPopup('Survival in Borderland')">Survival in Borderland</div>
+            <div class="event-card" onclick="openPopup('U(KNOW)')">U(KNOW)</div>
+            <div class="event-card" onclick="openPopup('Clash of Circuitry')">Clash of Circuitry</div>
+            <div class="event-card" onclick="openPopup('Electric Wordza')">Electric Wordza</div>
+            <div class="event-card" onclick="openPopup('PowerShift (Paper Presentation)')">PowerShift (Paper Presentation)</div>
         </div>
     </section>
 
-    <!-- EVENT DETAILS POPUP -->
-    <div id="event-details" class="event-details">
-        <div class="event-content">
-            <h3 id="event-title"></h3>
+    <!-- Popup Overlay -->
+    <div id="popup-overlay" class="popup-overlay"></div>
+
+    <!-- Event Popup Box -->
+    <div id="event-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2 id="event-title"></h2>
             <p id="event-description"></p>
-            <button onclick="closeEventDetails()">Close</button>
+            <a id="rulebook-button" class="rulebook-btn" href="#" target="_blank" download style="display: none;">Download Rulebook</a>
         </div>
     </div>
 
+    <!-- Registration Section -->
+    <section id="register">
+        <h2>Register for PULSE '25</h2>
+        <p>Click the button below to register.</p>
+        <a href="https://forms.gle/vAnHLcQxkgdzAxkp7" class="register-btn">Register Now</a>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: pulse25@example.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Address: Post Bag No.1, Chennai - Bangaluru High Road, Sriperumbudur, Tamil Nadu</p>
+    </footer>
+
 </body>
 </html>
+
