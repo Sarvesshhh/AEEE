@@ -1,83 +1,165 @@
-// COUNTDOWN TIMER
-const eventDate = new Date("Feb 22, 2025 00:00:00").getTime();
-const timerElement = document.getElementById("timer");
+// Countdown Timer
+const countdownDate = new Date("February 22, 2025 09:00:00").getTime();
 
-if (timerElement) {
-    const timer = setInterval(function () {
-        let now = new Date().getTime();
-        let timeLeft = eventDate - now;
+const countdownFunction = setInterval(function() {
+    let now = new Date().getTime();
+    let distance = countdownDate - now;
 
-        if (timeLeft <= 0) {
-            clearInterval(timer);
-            timerElement.innerHTML = "Event Started!";
-            return;
-        }
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
 
-        timerElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-    }, 1000);
-}
+    if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "EXPIRED";
+    }
+}, 1000);
 
-// EVENT DESCRIPTIONS
-const eventDescriptions = {
-    event1: "🔹 Survival in Borderland - A thrilling survival challenge where you must strategize to win.",
-    event2: "🔹 Ultimate Circuit - Design and build the most efficient electrical circuit.",
-    event3: "🔹 Clash of Circuitry - Compete in a battle of circuit-building and problem-solving.",
-    event4: "🔹 Electric Wordza - A fun electrical engineering quiz competition.",
-    event5: "🔹 Paper Presentation - Present your innovative research papers on EEE topics.",
-    event6: "🔹 PowerShift - Solve real-world power grid challenges using engineering skills."
+const eventDetails = {
+    "Survival in Borderland": {
+        title: "Survival in Borderland: Escape the Breakout",
+        description: [
+            "Preliminary: Rapid-fire quiz with buzzers.",
+            "Round 2: Escape Room with number and face card challenges.",
+            "Visa System: Teams start with 10 minutes; time is gained or lost based on performance."
+        ],
+        rulebook: "Posters\ESCAPE ROOM (1).pdf" // Rulebook path
+    },
+    "U(KNOW)": {
+        title: "U(KNOW)",
+        description: [
+            "UNO Showdown: Fast-paced UNO game.",
+            "Connect the Dots: Identify electrical/electronic components from images.",
+            "Circuit Challenge: Solve a circuit problem using resistors."
+        ],
+        rulebook: "Posters\UKNOW (1).pdf"
+    },
+    "Clash of Circuitry": {
+        title: "Clash of Circuitry",
+        description: [
+            "Circuit Enigma: Debug an incomplete/faulty circuit.",
+            "Assembly Arena: Teams assemble circuits using earned components and negotiate for missing parts."
+        ],
+        rulebook: "Posters\coc.pdf"
+    },
+    "Electric Wordza": {
+        title: "Electric Wordza",
+        description: [
+            "Round 1: A bingo-style game with electrical terms.",
+            "Round 2: Teams enact and guess terms with limited clues."
+        ],
+        rulebook: "Posters\Electric wordza  (2).pdf"
+    },
+    "PowerShift (Paper Presentation)": {
+        title: "PowerShift: Transforming Ideas into Reality (Paper Presentation)",
+        description: [
+            "AI & Automation in Electrical Systems – Smart grids, energy management, and autonomous systems using AI.",
+            "Quantum & Future Computing – Quantum technologies for power system optimization.",
+            "Sustainable Energy & Green Innovations – Renewable energy, wireless power transmission, and energy harvesting.",
+            "Electric Vehicles & Smart Mobility – EV innovations, AI-driven traffic management, and batteryless EVs.",
+            "Space Exploration & Aerospace Tech – Solar power stations, energy-efficient space systems.",
+            "Smart Cities & IoT – AI-powered grids, IoT-based infrastructure for smart cities."
+        ],
+        rulebook: "Posters\paper presentation.pdf"
+    }
 };
 
-// Ensure DOM elements exist
-const eventDetailsElement = document.getElementById("event-details");
-const eventTitleElement = document.getElementById("event-title");
-const eventDescriptionElement = document.getElementById("event-description");
+// Open Popup for Event Details
+function openPopup(event) {
+    const popup = document.getElementById("event-popup");
+    const overlay = document.getElementById("popup-overlay");
+    const title = document.getElementById("event-title");
+    const description = document.getElementById("event-description");
+    const rulebookButton = document.getElementById("rulebook-button");
 
-if (eventDetailsElement && eventTitleElement && eventDescriptionElement) {
-    // Function to show event details popup
-    function showEventDetails(eventId) {
-        if (eventDescriptions[eventId]) {
-            const [title, description] = eventDescriptions[eventId].split(" - ");
-            eventTitleElement.innerText = title.replace("🔹 ", "");
-            eventDescriptionElement.innerText = description || "No details available.";
-            
-            // Disable scrolling when popup is active
-            document.body.style.overflow = "hidden";
-            
-            // Ensure the popup is centered correctly before displaying
-            eventDetailsElement.style.position = "fixed";
-            eventDetailsElement.style.top = "50%";
-            eventDetailsElement.style.left = "50%";
-            eventDetailsElement.style.transform = "translate(-50%, -50%)";
-            eventDetailsElement.style.opacity = "0";
-            eventDetailsElement.style.transition = "opacity 0.3s ease-out, transform 0.3s ease-out";
-            
-            eventDetailsElement.classList.add("active");
-            setTimeout(() => {
-                eventDetailsElement.style.opacity = "1";
-            }, 10);
+    if (eventDetails[event]) {
+        title.innerHTML = eventDetails[event].title;
+
+        // Clear existing description
+        description.innerHTML = "";
+
+        // Create an unordered list for the description
+        const ul = document.createElement("ul");
+        eventDetails[event].description.forEach((item) => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            ul.appendChild(li);
+        });
+
+        description.appendChild(ul);
+
+        // Set rulebook button link
+        if (eventDetails[event].rulebook) {
+            rulebookButton.href = eventDetails[event].rulebook;
+            rulebookButton.style.display = "inline-block"; // Make button visible
+        } else {
+            rulebookButton.style.display = "none"; // Hide button if no rulebook
         }
-    }
 
-    // Function to close the event details popup
-    function closeEventDetails() {
-        eventDetailsElement.style.opacity = "0";
-        setTimeout(() => {
-            eventDetailsElement.classList.remove("active");
-            document.body.style.overflow = "auto"; // Enable scrolling when popup is closed
-        }, 300);
-    }
+        // Show popup and overlay
+        popup.style.display = "block";
+        overlay.style.display = "block";
 
-    // Close popup when clicking outside
-    document.addEventListener("click", function (event) {
-        if (!eventDetailsElement.contains(event.target) && !event.target.classList.contains("event-card")) {
-            closeEventDetails();
-        }
-    });
-} else {
-    console.error("Event details elements not found in the DOM.");
+        // Disable scrolling
+        document.body.style.overflow = "hidden";
+    }
 }
+
+// Close Popup
+function closePopup() {
+    document.getElementById("event-popup").style.display = "none";
+    document.getElementById("popup-overlay").style.display = "none";
+
+    // Hide Rulebook button when popup closes
+    document.getElementById("rulebook-button").style.display = "none";
+
+    // Enable scrolling again
+    document.body.style.overflow = "auto";
+}
+
+
+// Countdown Timer Logic
+const eventDate = new Date("February 22, 2025 00:00:00").getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const timeLeft = eventDate - now;
+
+    if (timeLeft > 0) {
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        // Ensure countdown values are updated
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+    } else {
+        document.getElementById("countdown").innerHTML = "<h2>Event Started!</h2>";
+    }
+}
+
+// Ensure the countdown updates every second
+setInterval(updateCountdown, 1000);
+updateCountdown(); // Call immediately so it doesn't wait for 1 second
+
+// Responsive Navbar Toggle
+function toggleMenu() {
+    document.getElementById("nav-menu").classList.toggle("active");
+}
+
+// Ensure Background Video Reloads Properly
+document.addEventListener("DOMContentLoaded", function () {
+    let video = document.getElementById("bg-video");
+    
+    video.addEventListener("error", function () {
+        console.log("Background video failed to load.");
+    });
+
+    video.load(); // Ensures the video reloads properly
+});
