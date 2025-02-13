@@ -349,9 +349,3 @@ footer {
         top: 60px;
     }
 }
-
-/* RESPONSIVE DESIGN */
-@media (max-width: 768px) {
-    .hero h1 { font-size: 2rem; }
-    .events-container { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-}
